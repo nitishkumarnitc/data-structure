@@ -19,7 +19,7 @@ public class CopyFile{
 				in.close();
 			}
 			if(out!=null){
-				out.close();
+				out.close()
 			}
 		}
 		

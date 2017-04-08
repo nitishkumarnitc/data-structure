@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.HashSet;
 
 public class Duplicates{
@@ -20,7 +21,7 @@ public class Duplicates{
 
 
 	/*Sort First given array*/
-	public void findDuplicateSort(int[] arr){
+	public void findDuplicateUsingSorting(int[] arr){
 		Arrays.sort(arr);
 		for(int i=0;i<arr.length-1;i++){
 			if(arr[i]==arr[i+1]) {
@@ -33,7 +34,7 @@ public class Duplicates{
 
 
 	/*Using HashMap*/
-	public void findDuplicateHashMap(int[] arr){
+	public void findDuplicateUsingHashMap(int[] arr){
 	
 		Map<Integer,Integer> map=new HashMap<>();
 		for(int i=0;i<arr.length;i++){
@@ -49,7 +50,7 @@ public class Duplicates{
 
 
 	/*Using HashSet*/
-	public void findDuplicateHashSet(int[] arr){
+	public void findDuplicateUsingHashSet(int[] arr){
 		
 			HashSet<Integer> set=new HashSet<>();
 			for(int i=0;i<arr.length;i++){
@@ -61,13 +62,16 @@ public class Duplicates{
 			System.out.println("Duplicate does not exist");
 	}
 
-
-	public static void main(String[] args) {
-		int[] arr={1,2,3,4,5,6,7,7};
-		/*new Duplicates().findDuplicateBruteForce(arr);*/
-		/*new Duplicates().findDuplicateSort(arr);*/
-		/*new Duplicates().findDuplicateHashMap(arr);*/
-		new Duplicates().findDuplicateHashSet(arr);
+	/*Negating the A[A[i]] concept - works only if all elements are poitive in the range [0,n-1] and writable array*/
+	public void findDuplicateUsingNegation(int[] arr){
+		for (int i=0; i<arr.length;i++ ) {
+			if(arr[Math.abs(arr[i])]<0) {
+				System.out.println("Duplicate exists"+ arr[i]);
+					return ;
+			}
+			arr[Math.abs(arr[i])]=-arr[Math.abs(arr[i])];
+		}
+		System.out.println("Duplicate does not exist");
 	}
 
 }
